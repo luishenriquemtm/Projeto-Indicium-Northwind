@@ -32,10 +32,11 @@ clean-targets:         # directories to be removed by `dbt clean`
 # using the `{{ config(...) }}` macro.
 models:
   dbt_northwind:
-      example:
-      +materialized: table
-
-
+    staging:
+      erp_northwind:
+        +materialized: view
+    marts:
+        +materialized: table
 
 seeds:
   dbt_northwind:
