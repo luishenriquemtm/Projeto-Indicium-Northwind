@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 -- É de boa prática usar CTE
 with
     source_products as (
@@ -19,3 +20,26 @@ with
     )
 select *
 from source_products
+=======
+with
+    source_products as (
+        select
+            cast(product_id	as int) as id_produto
+            , cast(supplier_id as int) as id_fornecedor	
+            , cast(category_id as int) as id_categoria	
+            , cast(product_name as string)as nome_produto			
+            , cast(quantity_per_unit as string)	as quantidade_por_unidade		
+            , cast(unit_price as numeric) as preco_por_unidade
+            , cast(units_in_stock as int) as unidades_em_estoque		
+            , cast(units_on_order as int) as unidades_por_ordem			
+            , cast(reorder_level as int) as	nivel_reabastecimento		
+            , case
+                when discontinued = 1 then true
+                else false
+            end as is_discontinuado
+        from {{ source('erp', 'products') }}
+    )
+
+select *
+from source_products
+>>>>>>> e33304deede8814703167c7f809bedf8a9d6d2e9
